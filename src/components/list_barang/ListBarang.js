@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import ContainerParent from '../Container'
 import dataBarang from '../../data'
 import Barang from './Barang'
+import TotalHarga from './TotalHarga'
+
 
 class ListBarang extends Component {
 
@@ -16,19 +18,19 @@ class ListBarang extends Component {
     this.setState({ barang: dataBarang })
   }
 
-  addPrice = harga => {
+  addPrice = (qty,harga) => {
 
-    const filterHarga = this.state.barang.map(item => {
+    const filterQty = this.state.barang.map(item => {
 
-      if(item.harga === harga){
-        return { ...item, harga: item.harga * harga }
+      if(item.qty === qty && item.harga === harga){
+        return { ...item, qty: item.qty + 1, harga: (item.harga) * item.qty}
       }else {
         return item
       }
 
     });
     
-    this.setState({barang:filterHarga})
+    this.setState({barang:filterQty})
 
   }
 
@@ -36,11 +38,11 @@ class ListBarang extends Component {
 
     console.log(this.state.barang)
 
-    const filterPrice = this.state.barang.sort((a, b) => {
-      return a.harga - b.harga
-    });
+    // const filterPrice = this.state.barang.sort((a, b) => {
+    //   return a.harga - b.harga
+    // });
 
-    const listBarangAfterSort = filterPrice.map((item, idx) => (
+    const listBarangAfterSort = this.state.barang.map((item, idx) => (
       <Barang
         key={idx}
         id={item.id}
@@ -50,7 +52,7 @@ class ListBarang extends Component {
         distributor={item.distributor}
         retur={item.retur}
         harga={item.harga}
-        deskripsi={item.deskripsi}
+        qty={item.qty}
         addPrice={this.addPrice}
       />
     ));
@@ -58,6 +60,7 @@ class ListBarang extends Component {
     return (
       <ContainerParent>
         { listBarangAfterSort }
+        {/* <TotalHarga  /> */}
       </ContainerParent>
     )
   }

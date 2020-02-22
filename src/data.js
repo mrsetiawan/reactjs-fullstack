@@ -7,7 +7,7 @@ export default [
     distributor: 'bandung',
     retur: false,
     harga: 50000,
-    deskripsi: 'barang tidak bisa diretur'
+    qty: 1
   },
   {
     id: 2,
@@ -17,7 +17,7 @@ export default [
     distributor: 'jakarta',
     retur: true,
     harga: 30000,
-    deskripsi: 'barang bisa diretur'
+    qty: 1
   },
   {
     id: 3,
@@ -27,7 +27,7 @@ export default [
     distributor: 'bandung',
     retur: false,
     harga: 167000,
-    deskripsi: 'barang tidak bisa diretur'
+    qty: 1
   },
   {
     id: 4,
@@ -37,16 +37,6 @@ export default [
     distributor: 'aceh',
     retur: true,
     harga: 780000,
-    deskripsi: 'barang bisa diretur'
-  },
-  {
-    id: 5,
-    nama_barang: 'kulkas',
-    kategori: 'perlengkapan rumah tangga',
-    img: 'https://static.bmdstatic.com/pk/product/medium/5c1b7297c878e.jpg',
-    distributor: 'batam',
-    retur: false,
-    harga: 950000,
-    deskripsi: 'barang tidak bisa diretur'
-  },
+    qty: 1
+  }
 ]
