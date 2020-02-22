@@ -1,41 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
 import ProductList from '../src/components/ProductList'
+import ListBarang from '../src/components/list_barang/ListBarang'
+// import 'antd/dist/antd.css';
+import { BrowserRouter as Router,Route } from 'react-router-dom'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
 
+class App extends Component {
 
-function App () {
-
-  return (
-    <ProductList />
-  )
+  render() {
+    return (
+      <Router>
+        <Route path='/' exact component={ProductList} />
+        <Route path='/barang' exact component={ListBarang} />
+      </Router>
+    )
+  }
 }
-// class App extends Component {
-
-//   constructor(props) {
-//     super(props)
-//     this.state = {
-//       nomor: [1, 2, 3, 4]
-//     }
-
-//     console.log(`constructor ${this.state.nomor}`)
-//   }
-
-
-//   componentDidMount() {
-//     this.setState({ nomor: this.state.nomor.concat([5, 6, 8, 9]) })
-//     console.log(`after didmount ${this.state.nomor}`)
-//   }
-
-//   render() {
-//     console.log(`after render ${this.state.nomor}`)
-
-//     return (
-//       <>aaaa</>
-//     )
-//   }
-// }
-// export default App;
-
-
 export default App;
+

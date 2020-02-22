@@ -1,9 +1,5 @@
 import React, { Component } from 'react'
-import {
-  Container,
-  Row,
-  Col,
-} from 'react-bootstrap'
+import ContainerParent from '../components/Container'
 import Product from './Product'
 import productList from '../Seed.js'
 
@@ -21,6 +17,7 @@ class ProductList extends Component {
   }
 
   handleUpdate = (id) => {
+    console.log(`id ${id}`)
     const addVote = this.state.products.map((product) => {
       if (product.id === id) {
         // return Object.assign({}, product, {
@@ -47,23 +44,20 @@ class ProductList extends Component {
     const productComponent = products.map((item, idx) => (
       <Product
         key={idx}
-        _id={item.id}
-        _title={item.title}
-        _votes={item.votes}
-        _description={item.description}
-        _url={item.url}
-        _submitterAvatarUrl={item.submitterAvatarUrl}
-        _productImageUrl={item.productImageUrl}
+        id={item.id}
+        titile={item.title}
+        description={item.description}
+        votes={item.votes}
+        submitterAvatarUrl={item.submitterAvatarUrl}
+        productImageUrl={item.productImageUrl}
         handleUpdate={this.handleUpdate}
       />
     ));
 
     return (
-      <Container>
-        <Row className='p-3'>
-          {productComponent}
-        </Row>
-      </Container>
+      <ContainerParent>
+        {productComponent}
+      </ContainerParent>
     )
   }
 }
