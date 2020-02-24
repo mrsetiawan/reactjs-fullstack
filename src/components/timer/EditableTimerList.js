@@ -14,6 +14,7 @@ export default class EditableTimerList extends Component {
         elapsed={timer.elapsed}
         runningSince={timer.runningSince}
         editFormOpen={timer.editFormOpen}
+        onFormSubmit={this.props.onFormSubmit}
       />
     ))
 

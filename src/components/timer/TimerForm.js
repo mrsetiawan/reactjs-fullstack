@@ -22,7 +22,7 @@ export default class TimerForm extends Component {
   handleFormClose = () => this.props.handleFormClose()
 
   render() {
-
+    
     const { title, project, } = this.state
     
     const submitText = this.props.id ? 'Update' : 'Create'

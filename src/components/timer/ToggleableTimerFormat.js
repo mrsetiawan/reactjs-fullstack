@@ -13,7 +13,7 @@ export default class ToggleableTimerFormat extends Component {
   handleFormOpen = () => this.setState({isOpen:true})
   handleFormClose = () => this.setState({isOpen:false})
   handleSubmit = (value) => {
-    this.props.onFormSubmit(value)
+    this.props.handleCreateForm(value)
     this.setState({isOpen:false})
   }
 

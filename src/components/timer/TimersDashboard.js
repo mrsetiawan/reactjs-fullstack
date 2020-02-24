@@ -29,14 +29,32 @@ export default class TimersDashboard extends Component {
     ]
   }
   
-  // handleCreateForm = (value) => {
-  //   this.onFormSubmit(value)
-  // }
+  handleCreateForm = (value) => {
+    this.createTimer(value)
+  }
 
-  onFormSubmit = (value) => {
+  createTimer = (value) => {
     const newValue = value
-
     this.setState({timers:this.state.timers.concat(newValue)})
+  }
+
+  handleEditFormSubmit = (data) => {
+    this.updateTimer(data)
+  }
+
+  updateTimer = (data) => {
+    this.setState({
+      timers: this.state.timers.map((newData) => {
+        if(newData.id === data.id){
+          return Object.assign({}, newData, {
+            title: newData.title,
+            project: newData.project,
+          });
+        }else{
+          return newData
+        }
+      })
+    })
   }
 
   render() {
@@ -48,11 +66,12 @@ export default class TimersDashboard extends Component {
         <Col xs={12}>
           <EditableTimerList 
             timers={this.state.timers} 
+            onFormSubmit={this.handleEditFormSubmit}
           />
         </Col>
         <Col xs={12}>
           <ToggleableTimerFormat 
-            onFormSubmit={this.onFormSubmit}
+            handleCreateForm={(value) => this.handleCreateForm(value)}
           />
         </Col>
       </ContainerParent>
