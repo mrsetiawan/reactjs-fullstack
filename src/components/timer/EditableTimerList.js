@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import EditableTimer from './EditableTimer'
 
 export default class EditableTimerList extends Component {
+  
   render() {
+
     const timer = this.props.timers.map((timer, idx) => (
       <EditableTimer
         key={idx}
@@ -13,9 +15,8 @@ export default class EditableTimerList extends Component {
         runningSince={timer.runningSince}
         editFormOpen={timer.editFormOpen}
       />
-    )
+    ))
 
-    )
     return (
       <>
         {timer}

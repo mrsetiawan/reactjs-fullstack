@@ -1,17 +1,15 @@
 import React, { Component } from 'react'
-//UI
 import { Col, Card, Button } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons'
 
-export default class Timer extends Component {
-  
+export default class TImer extends Component {
   render() {
 
-    const { title, project, elapsed, runningSince } = this.props
+    const {id, title, project, elapsed, runningSince, editFormOpen} = this.props
 
     return (
-      <Col>
+      <Col className='mb-3'>
         <Card>
           <Card.Body>
             <Card.Title>{title}</Card.Title>

@@ -5,14 +5,21 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
 export default class ToggleableTimerFormat extends Component {
+
+  state = {
+    isOpen:false
+  }
+
+  handleChange = () => this.setState({isOpen:!this.state.isOpen})
+
   render() {
     return (
       <Row className='m-3'>
-        {this.props.isOpen ?
+        {this.state.isOpen ?
           <TimerForm />
           :
-          <Col md={4} className='text-center'>
-            <Button>
+          <Col className='text-center'>
+            <Button onClick={this.handleChange}>
               <FontAwesomeIcon icon={faPlus} />
             </Button>
           </Col>

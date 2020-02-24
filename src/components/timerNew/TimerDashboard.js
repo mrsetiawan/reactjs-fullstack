@@ -1,18 +1,17 @@
 import React, { Component } from 'react'
 import EditableTimerList from './EditableTimerList'
-import ToggleableTimerFormat from './ToggleableTimerFormat'
+import ToggleTimer from './ToogleTimer'
 import uuid from 'uuid/v4'
-//UI
+
 import ContainerParent from '../Container'
 import {
   Col,
 } from 'react-bootstrap'
 
-export default class TimersDashboard extends Component {
+export default class TimerDashboard extends Component {
 
   state = {
-    // isOpen: true
-    timers:[
+    timers: [
       { id: uuid(), 
         title:'Learn React',
         project: 'Web Domination',
@@ -27,7 +26,8 @@ export default class TimersDashboard extends Component {
         runningSince:null, 
         editFormOpen:true 
       }
-    ]
+    ],
+    isOpen: true
   }
 
   render() {
@@ -37,12 +37,10 @@ export default class TimersDashboard extends Component {
           <h3 className='text-center'><b>Timer app</b></h3>
         </Col>
         <Col xs={12}>
-          <EditableTimerList 
-            timers={this.state.timers} 
-          />
+          <EditableTimerList timers={this.state.timers} />
         </Col>
         <Col xs={12}>
-          <ToggleableTimerFormat />
+          <ToggleTimer isOpen={this.state.isOpen} />
         </Col>
       </ContainerParent>
     )
