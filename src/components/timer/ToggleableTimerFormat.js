@@ -10,16 +10,24 @@ export default class ToggleableTimerFormat extends Component {
     isOpen:false
   }
 
-  handleChange = () => this.setState({isOpen:!this.state.isOpen})
+  handleFormOpen = () => this.setState({isOpen:true})
+  handleFormClose = () => this.setState({isOpen:false})
+  handleSubmit = (value) => {
+    this.props.onFormSubmit(value)
+    this.setState({isOpen:false})
+  }
 
   render() {
     return (
       <Row className='m-3'>
         {this.state.isOpen ?
-          <TimerForm />
+          <TimerForm 
+            handleSubmit={this.handleSubmit}
+            handleFormClose={this.handleFormClose}
+          />
           :
           <Col className='text-center'>
-            <Button onClick={this.handleChange}>
+            <Button onClick={this.handleFormOpen}>
               <FontAwesomeIcon icon={faPlus} />
             </Button>
           </Col>

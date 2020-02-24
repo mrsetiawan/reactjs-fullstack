@@ -11,7 +11,6 @@ import {
 export default class TimersDashboard extends Component {
 
   state = {
-    // isOpen: true
     timers:[
       { id: uuid(), 
         title:'Learn React',
@@ -29,6 +28,16 @@ export default class TimersDashboard extends Component {
       }
     ]
   }
+  
+  // handleCreateForm = (value) => {
+  //   this.onFormSubmit(value)
+  // }
+
+  onFormSubmit = (value) => {
+    const newValue = value
+
+    this.setState({timers:this.state.timers.concat(newValue)})
+  }
 
   render() {
     return (
@@ -42,7 +51,9 @@ export default class TimersDashboard extends Component {
           />
         </Col>
         <Col xs={12}>
-          <ToggleableTimerFormat />
+          <ToggleableTimerFormat 
+            onFormSubmit={this.onFormSubmit}
+          />
         </Col>
       </ContainerParent>
     )

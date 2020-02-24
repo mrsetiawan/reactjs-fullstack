@@ -8,7 +8,7 @@ export default class EditableTimer extends Component {
   state = {
     isEditFormOpen: false
   }
-  
+
   render() {
 
     return (
