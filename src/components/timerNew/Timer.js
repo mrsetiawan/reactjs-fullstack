@@ -4,6 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons'
 
 export default class TImer extends Component {
+
+  handlerEdit = () => this.props.handlerEdit()
+  
   render() {
 
     const {id, title, project, elapsed, runningSince, editFormOpen} = this.props
@@ -21,10 +24,10 @@ export default class TImer extends Component {
             </h3>
             <Button variant="outline-warning" size='block'>Start</Button>
             <br />
-            <Card.Link href="#">
+            <Card.Link className='text-primary' onClick={this.handlerEdit}>
               <FontAwesomeIcon icon={faEdit} />
             </Card.Link>
-            <Card.Link href="#">
+            <Card.Link className='text-primary'>
               <FontAwesomeIcon icon={faTrash} />
             </Card.Link>
           </Card.Body>

@@ -58,6 +58,7 @@ export default class TimersDashboard extends Component {
   }
 
   render() {
+    
     return (
       <ContainerParent>
         <Col xs={12}>

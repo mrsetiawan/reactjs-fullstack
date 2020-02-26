@@ -2,10 +2,32 @@ import React, { Component } from 'react'
 import { Col, Card, Form, Button } from 'react-bootstrap'
 
 export default class TimerForm extends Component {
-  render() {
-    const { title, project } = this.props
 
-    const titleButton = title ? 'Update' : 'Create'
+  // static defaultProps = {
+  //   title: 'ini default title',
+  //   project: 'ini default project'
+  // }
+
+  state = {
+    title: this.props.title || '',
+    project: this.props.project || ''
+  }
+
+  
+  handleChangeTitle = (e) => this.setState({title:e.target.value})
+  handleProject = (e) => this.setState({project:e.target.value})
+  
+  handleSubmit = () => {
+    this.props.handleSubmitFromToogle({
+      id:this.props.id,
+      title:this.state.title,
+      project:this.state.project
+    })
+  }
+  
+  render() {
+    const { title, project } = this.state
+    const titleButton = this.props.id ? 'Update' : 'Create'
 
     return (
       <Col className='mb-3'>
@@ -17,17 +39,17 @@ export default class TimerForm extends Component {
             <Form>
               <Form.Group controlId="formBasic">
                 <Form.Label>Title</Form.Label>
-                <Form.Control type="text"  defaultValue={title} />
+                <Form.Control type="text" value={title} onChange={(e) => this.handleChangeTitle(e)}/>
               </Form.Group>
 
               <Form.Group controlId="formBasic">
                 <Form.Label>Project</Form.Label>
-                <Form.Control type="text" defaultValue={project} />
+                <Form.Control type="text" value={project} onChange={(e) => this.handleProject(e)} />
               </Form.Group>
-              <Button variant="primary" type="submit">
+              <Button variant="primary" type="button" onClick={this.handleSubmit}>
                 {titleButton}
               </Button> &nbsp;  
-              <Button variant="danger" type="submit">
+              <Button variant="danger" type="button">
                 Cancel
               </Button>
             </Form>
@@ -37,3 +59,4 @@ export default class TimerForm extends Component {
     )
   }
 }
+

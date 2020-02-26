@@ -7,6 +7,11 @@ class EditableTimer extends Component {
   state = {
     editFormOpen:false
   }
+  
+
+  handleSubmit = (data) => {
+    this.props.handleSubmit(data)
+  }
 
   render() {
 
@@ -14,11 +19,13 @@ class EditableTimer extends Component {
 
     return (
       <>
-        {editFormOpen ?
+        {this.state.editFormOpen ?
           <TimerForm 
             id={id}
             title={title}
             project={project}
+            handleCloseForm={this.handleCloseForm}
+            handleSubmit={this.handleSubmit}
           />
           :
           <Timer 
@@ -28,6 +35,7 @@ class EditableTimer extends Component {
             elapsed={elapsed}
             runningSince={runningSince}
             editFormOpen={editFormOpen}
+            editHandler={this.handleToogle}
           />
         }
       </>

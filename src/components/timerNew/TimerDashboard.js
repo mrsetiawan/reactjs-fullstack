@@ -26,8 +26,15 @@ export default class TimerDashboard extends Component {
         runningSince:null, 
         editFormOpen:true 
       }
-    ],
-    isOpen: true
+    ]
+  }
+
+  handleCreateForm = (data) => {
+    this.createNewForm(data)
+  }
+
+  createNewForm = (data) => {
+    this.setState({timers:this.state.timers.concat(data)})
   }
 
   render() {
@@ -37,10 +44,13 @@ export default class TimerDashboard extends Component {
           <h3 className='text-center'><b>Timer app</b></h3>
         </Col>
         <Col xs={12}>
-          <EditableTimerList timers={this.state.timers} />
+          <EditableTimerList 
+            timers={this.state.timers} 
+          />
         </Col>
         <Col xs={12}>
-          <ToggleTimer isOpen={this.state.isOpen} />
+          <ToggleTimer 
+            handleSubmitFromParent={this.handleCreateForm} />
         </Col>
       </ContainerParent>
     )
