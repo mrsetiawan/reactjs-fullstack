@@ -3,13 +3,20 @@ import { Button } from 'react-bootstrap'
 
 export default class TimerButtonAction extends Component {
   render() {
-    console.log(this.props.runningSince)
     return (
       <>
         {this.props.runningSince ?
-          <Button variant="outline-danger" size='block'>Stop</Button>
+          <Button 
+            variant="outline-danger" 
+            size='block'
+            onClick={this.props.onStopClick}>Stop
+          </Button>
           :
-          <Button variant="outline-warning" size='block'>Start</Button>
+          <Button 
+            variant="outline-warning" 
+            size='block' 
+            onClick={this.props.onStartClick}>Start
+          </Button>
         }
       </>
     )

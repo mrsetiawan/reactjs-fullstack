@@ -22,6 +22,9 @@ export default class EditableTimer extends Component {
 
   deleteList = (id) => this.props.deleteList(id)
 
+  onStartClick = (id) => this.props.onStartClick(id)
+  onStopClick = (id) => this.props.onStopClick(id)
+
   render() {
 
     return (
@@ -43,6 +46,9 @@ export default class EditableTimer extends Component {
             runningSince={this.props.runningSince}
             handleEditForm={this.handleEditForm}
             deleteList={(id) => this.deleteList(id)}
+            onStartClick={(id) => this.onStartClick(id)}
+            onStopClick={(id) => this.onStopClick(id)}
+
           />
         }
       </Row>

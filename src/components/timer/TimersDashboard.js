@@ -66,7 +66,41 @@ export default class TimersDashboard extends Component {
       timers: this.state.timers.filter(item => item.id !== id)
     })
   }
-   
+
+  onStartClick = (id) => this.handlerStart(id)
+  
+  
+  handlerStart = (id) => {
+    const now = Date.now()
+    console.log(now)
+    this.setState({
+      timers: this.state.timers.map(item => {
+        if(item.id === id){
+          return {...item, runningSince:now}
+        }else{
+          return item
+        }
+      })
+    })
+  }
+  
+  onStopClick = (id) => this.handlerStop(id)
+
+  handlerStop = (id) => {
+    const now = Date.now()
+    this.setState({
+      timers: this.state.timers.map(item => {
+        if(item.id !== id){
+          const lastElapsed = now - item.runningSince
+          return {...item, elapsed: item.elapsed + lastElapsed, runningSince:null}
+        }else{
+          return item
+        }
+      })
+    })
+
+
+  }
 
   render() {
     
@@ -80,6 +114,8 @@ export default class TimersDashboard extends Component {
             timers={this.state.timers} 
             onFormSubmit={this.handleEditFormSubmit}
             deleteList={(id) => this.deleteList(id)}
+            onStartClick={(id) => this.onStartClick(id)}
+            onStopClick={(id) => this.onStopClick(id)}
           />
         </Col>
         <Col xs={12}>

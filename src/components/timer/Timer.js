@@ -14,6 +14,9 @@ export default class Timer extends Component {
     clearInterval(this.forceUpdateInterval)
   }
 
+  onStartClick = (id) => this.props.onStartClick(this.props.id)
+  onStopClick = (id) => this.props.onStopClick(this.props.id)
+
   componentDidMount() {
     this.forceUpdateInterval = () => setInterval(() => this.forceUpdate(), 50)
   }
@@ -35,6 +38,8 @@ export default class Timer extends Component {
             </h3>
             <TimerButtonAction
               runningSince={!!runningSince}
+              onStartClick={(id) => this.onStartClick(id)}
+              onStopClick={(id) => this.onStopClick(id)}
             />
             <br />
             <Card.Link >
