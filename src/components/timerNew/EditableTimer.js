@@ -8,9 +8,15 @@ class EditableTimer extends Component {
     editFormOpen:false
   }
   
+  openForm = () => this.setState({editFormOpen:true})
+  closeForm = () => this.setState({editFormOpen:false})
+
+  editHandlerForm = () => this.openForm()
+  handlerFormClose = () => this.closeForm()
 
   handleSubmit = (data) => {
-    this.props.handleSubmit(data)
+    this.props.onFormSubmit(data)
+    this.closeForm();
   }
 
   render() {
@@ -24,7 +30,7 @@ class EditableTimer extends Component {
             id={id}
             title={title}
             project={project}
-            handleCloseForm={this.handleCloseForm}
+            handlerFormClose={this.handlerFormClose}
             handleSubmit={this.handleSubmit}
           />
           :
@@ -36,6 +42,7 @@ class EditableTimer extends Component {
             runningSince={runningSince}
             editFormOpen={editFormOpen}
             editHandler={this.handleToogle}
+            editHandlerForm={this.editHandlerForm}
           />
         }
       </>

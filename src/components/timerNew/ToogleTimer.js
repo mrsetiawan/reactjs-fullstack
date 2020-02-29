@@ -10,11 +10,16 @@ class ToogleTimer extends Component {
     isOpen:false
   }
 
-  handleToogle = () => this.setState({isOpen: !this.state.isOpen})
+  handlerFormClose = () => this.closeForm()
+  handlerFormOpen = () => this.openForm()
+
+  closeForm = () => this.setState({isOpen:false})
+  openForm = () => this.setState({isOpen:true})
+
 
   handleSubmit = (data) => {
     this.props.handleSubmitFromParent(data);
-    this.setState({isOpen:false})
+    this.closeForm()
   }
 
   render() {
@@ -22,12 +27,12 @@ class ToogleTimer extends Component {
       <>
         {this.state.isOpen ?
           <TimerForm 
-            handleToogle={this.handleToogle} 
-            handleSubmitFromToogle={(data) => this.handleSubmit(data)}
+            handlerFormClose={this.handlerFormClose} 
+            handleSubmit={(data) => this.handleSubmit(data)}
           />
           :
           <Col className='text-center'>
-            <Button onClick={this.handleToogle}>
+            <Button onClick={this.handlerFormOpen}>
               <FontAwesomeIcon icon={faPlus} />
             </Button>
           </Col>

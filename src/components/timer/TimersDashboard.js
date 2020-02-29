@@ -57,6 +57,7 @@ export default class TimersDashboard extends Component {
     })
   }
 
+  deleteList = (id) => console.log(id)
   render() {
     
     return (
@@ -68,6 +69,7 @@ export default class TimersDashboard extends Component {
           <EditableTimerList 
             timers={this.state.timers} 
             onFormSubmit={this.handleEditFormSubmit}
+            deleteList={(id) => this.deleteList(id)}
           />
         </Col>
         <Col xs={12}>

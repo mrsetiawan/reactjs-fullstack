@@ -5,8 +5,8 @@ import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons'
 
 export default class TImer extends Component {
 
-  handlerEdit = () => this.props.handlerEdit()
-  
+  handlerEdit = () => this.props.editHandlerForm()
+
   render() {
 
     const {id, title, project, elapsed, runningSince, editFormOpen} = this.props

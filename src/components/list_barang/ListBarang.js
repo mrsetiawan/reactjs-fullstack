@@ -36,8 +36,6 @@ class ListBarang extends Component {
 
   render() {
 
-    console.log(this.state.barang)
-
     // const filterPrice = this.state.barang.sort((a, b) => {
     //   return a.harga - b.harga
     // });

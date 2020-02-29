@@ -20,6 +20,8 @@ export default class EditableTimer extends Component {
     this.closeForm()
   }
 
+  deleteList = (id) => this.props.deleteList(id)
+
   render() {
 
     return (
@@ -40,6 +42,7 @@ export default class EditableTimer extends Component {
             elapsed={this.props.elapsed}
             runningSince={this.props.runningSince}
             handleEditForm={this.handleEditForm}
+            deleteList={(id) => this.deleteList(id)}
           />
         }
       </Row>

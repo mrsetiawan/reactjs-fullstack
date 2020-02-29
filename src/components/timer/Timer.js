@@ -7,6 +7,7 @@ import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons'
 export default class Timer extends Component {
   
   handleEditForm = () => this.props.handleEditForm()
+  deleteList = (id) => this.props.deleteList(this.props.id)
 
   render() {
 
@@ -29,7 +30,7 @@ export default class Timer extends Component {
               <FontAwesomeIcon icon={faEdit} className='text-primary' onClick={this.handleEditForm}/>
             </Card.Link>
             <Card.Link >
-              <FontAwesomeIcon icon={faTrash} className='text-primary' />
+              <FontAwesomeIcon icon={faTrash} className='text-primary' onClick={(id) => this.deleteList(id)}/>
             </Card.Link>
           </Card.Body>
         </Card>

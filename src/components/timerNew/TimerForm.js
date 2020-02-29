@@ -18,12 +18,14 @@ export default class TimerForm extends Component {
   handleProject = (e) => this.setState({project:e.target.value})
   
   handleSubmit = () => {
-    this.props.handleSubmitFromToogle({
+    this.props.handleSubmit({
       id:this.props.id,
       title:this.state.title,
       project:this.state.project
     })
   }
+  
+  handlerFormClose = () => this.props.handlerFormClose()
   
   render() {
     const { title, project } = this.state
@@ -49,7 +51,7 @@ export default class TimerForm extends Component {
               <Button variant="primary" type="button" onClick={this.handleSubmit}>
                 {titleButton}
               </Button> &nbsp;  
-              <Button variant="danger" type="button">
+              <Button variant="danger" type="button" onClick={this.handlerFormClose}>
                 Cancel
               </Button>
             </Form>

@@ -37,6 +37,20 @@ export default class TimerDashboard extends Component {
     this.setState({timers:this.state.timers.concat(data)})
   }
 
+  handleFormEdit = (data) => this.updateForm(data)
+
+  updateForm = (data) => {
+    this.setState({
+      timers: this.state.timers.map(timer => {
+        if(data.id === timer.id){
+          return {...timer, title:timer.title, project:timer.project}
+        }else{
+          return timer
+        } 
+      })
+    })
+  }
+
   render() {
     return (
       <ContainerParent>
@@ -46,6 +60,7 @@ export default class TimerDashboard extends Component {
         <Col xs={12}>
           <EditableTimerList 
             timers={this.state.timers} 
+            onFormSubmit={this.handleFormEdit}
           />
         </Col>
         <Col xs={12}>

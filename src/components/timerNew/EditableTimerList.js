@@ -1,7 +1,7 @@
 import React from 'react';
 import EditableTimer from './EditableTimer'
 
-function EditableTimerList({ timers }) {
+function EditableTimerList({ timers,onFormSubmit }) {
 
   const timer = timers.map((item, idx) => (
 
@@ -13,6 +13,7 @@ function EditableTimerList({ timers }) {
       elapsed={item.elapsed}
       runningSince={item.runningSince}
       editFormOpen={item.editFormOpen}
+      onFormSubmit={onFormSubmit}
     />
 
   ))
