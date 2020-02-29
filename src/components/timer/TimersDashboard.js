@@ -46,10 +46,12 @@ export default class TimersDashboard extends Component {
     this.setState({
       timers: this.state.timers.map((newData) => {
         if(newData.id === data.id){
-          return Object.assign({}, newData, {
-            title: newData.title,
-            project: newData.project,
-          });
+          // return Object.assign({}, newData, {
+          //   title: newData.title,
+          //   project: newData.project,
+          // });
+
+          return {...newData, title:newData.title, project:newData.project}
         }else{
           return newData
         }
@@ -57,7 +59,15 @@ export default class TimersDashboard extends Component {
     })
   }
 
-  deleteList = (id) => console.log(id)
+  deleteList = (id) => this.deleteListByid(id)
+
+  deleteListByid = (id) => {
+    this.setState({
+      timers: this.state.timers.filter(item => item.id !== id)
+    })
+  }
+   
+
   render() {
     
     return (

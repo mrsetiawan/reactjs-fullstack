@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import TimerButtonAction from './TimerButtonAction'
 //UI
 import { Col, Card, Button } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -9,10 +10,18 @@ export default class Timer extends Component {
   handleEditForm = () => this.props.handleEditForm()
   deleteList = (id) => this.props.deleteList(this.props.id)
 
+  componentWillMount() {
+    clearInterval(this.forceUpdateInterval)
+  }
+
+  componentDidMount() {
+    this.forceUpdateInterval = () => setInterval(() => this.forceUpdate(), 50)
+  }
+
   render() {
-
+    
     const { id,title, project, elapsed, runningSince } = this.props
-
+    // const elapsedString = 
     return (
       <Col>
         <Card>
@@ -24,7 +33,9 @@ export default class Timer extends Component {
             <h3 className='text-center p-5'>
               {elapsed}
             </h3>
-            <Button variant="outline-warning" size='block'>Start</Button>
+            <TimerButtonAction
+              runningSince={!!runningSince}
+            />
             <br />
             <Card.Link >
               <FontAwesomeIcon icon={faEdit} className='text-primary' onClick={this.handleEditForm}/>
