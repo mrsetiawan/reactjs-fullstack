@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactElement from './components/ReactElement'
 import ProductList from '../src/components/ProductList'
 import ListBarang from '../src/components/list_barang/ListBarang'
 import TimersDashboard from '../src/components/timer/TimersDashboard'
@@ -14,7 +15,8 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <Route path='/' exact component={ProductList} />
+        <Route path='/' exact component={ReactElement} />
+        <Route path='/productlist' exact component={ProductList} />
         <Route path='/barang' component={ListBarang} />
         <Route path='/timer' component={TimersDashboard} />
         <Route path='/timernew' component={TimerDashboard} />
