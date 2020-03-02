@@ -3,7 +3,7 @@ import ReactElement from './components/ReactElement'
 import ProductList from '../src/components/ProductList'
 import ListBarang from '../src/components/list_barang/ListBarang'
 import TimersDashboard from '../src/components/timer/TimersDashboard'
-
+import InitialState from '../src/components/state/InitialState'
 import TimerDashboard from '../src/components/timerNew/TimerDashboard'
 // import 'antd/dist/antd.css';
 import { BrowserRouter as Router,Route } from 'react-router-dom'
@@ -16,6 +16,7 @@ class App extends Component {
     return (
       <Router>
         <Route path='/' exact component={ReactElement} />
+        <Route path='/counter' exact component={InitialState} />
         <Route path='/productlist' exact component={ProductList} />
         <Route path='/barang' component={ListBarang} />
         <Route path='/timer' component={TimersDashboard} />
