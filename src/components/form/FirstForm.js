@@ -7,11 +7,17 @@ export default class FirstForm extends Component {
   state = {
     names:[],
     nama:'',
-    namas:[]
+    namas:[],
+    fields:{
+      name:'',
+      email:''
+    },
+    people:[]
   }
 
   greate = (event) => {
     const btn = event.target 
+    console.log(btn)
     console.log(`ini nama ${btn.name} dan ini nilai ${btn.value} dan ini adalah type ${btn.type}`)
   }
   // amazing = (event) => console.log('The user clicked : amazing', event)
@@ -50,8 +56,38 @@ export default class FirstForm extends Component {
     console.log(this.state.namas)
   }
 
+  handlerChange = (event) => {
+    //bisa begini 1
+    // const fieldsBaru = this.state.fields
+    //atau begini 2
+    const fields = this.state.fields
+    //1
+    // fieldsBaru[event.target.name] = [event.target.value]
+    //2
+    fields[event.target.name] = [event.target.value]
+    //1
+    // this.setState({fields:fieldsBaru})
+    //2
+    this.setState({ fields })
+  }
+
+  multipleField = (event) => {
+    event.preventDefault()
+
+    const people = [...this.state.people, this.state.fields]
+    this.setState({
+      people,
+      fields:{
+        name:'',
+        email:''
+      }
+    })
+
+  }
+
   render() {
-    console.log(this.state.nama)
+    // console.log(this.state.fields.name)
+    // console.log(this.state.fields.email)
     return (
       <Container>
         <Col className='text-center'>
@@ -117,10 +153,49 @@ export default class FirstForm extends Component {
               onChange={this.nameOnChange}
             />
 
-
-            <button type='submit' variant='success'>Submit</button>
+            <Button type='submit' variant='success'>Submit</Button>
 
           </form>
+
+
+          <br />
+          <br />
+          <br />
+
+          <ul>
+            {this.state.namas.map((item, idx) => <li key={idx}>{item}</li>)}
+          </ul>
+
+
+          <br />
+          <br />
+          <br />
+
+          <form onSubmit={this.multipleField}>
+            <input 
+              type='text'
+              placeholder='input name'
+              name='name'
+              value={this.state.fields.name}
+              onChange={this.handlerChange}
+            /> &nbsp;
+
+            <input 
+              type='email'
+              placeholder='input email'
+              name='email'
+              value={this.state.fields.email}
+              onChange={this.handlerChange}
+            /> &nbsp;
+
+            <Button type='submit' variant='danger'>Submit</Button>
+          </form>
+
+
+          <ul className='text-center'>
+            {this.state.people.map((item,idx) => <li key={idx}>{item.name} {item.email}</li>)}
+          </ul>
+
         </Col>
       </Container>
     )
