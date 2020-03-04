@@ -10,7 +10,8 @@ export default class FirstForm extends Component {
     namas:[],
     fields:{
       name:'',
-      email:''
+      email:'',
+      umur:''
     },
     people:[]
   }
@@ -75,14 +76,21 @@ export default class FirstForm extends Component {
     event.preventDefault()
 
     const people = [...this.state.people, this.state.fields]
+
     this.setState({
       people,
       fields:{
         name:'',
-        email:''
+        email:'',
+        umur:''
       }
     })
 
+  }
+
+  getElement = (event) => {
+    const ele = event.target
+    console.log(`ini adalah name ${ele.name} dan ini adalah value ${ele.value}`)
   }
 
   render() {
@@ -96,7 +104,6 @@ export default class FirstForm extends Component {
             variant='primary'
             name='greate'
             value='great'
-            tes='wadidaw'
             onClick={this.greate}
           >Great
           </Button> &nbsp;
@@ -188,15 +195,26 @@ export default class FirstForm extends Component {
               onChange={this.handlerChange}
             /> &nbsp;
 
+            <input 
+              type='number'
+              placeholder='input age'
+              name='umur'
+              value={this.state.fields.umur}
+              onChange={this.handlerChange}
+            /> &nbsp;
+
             <Button type='submit' variant='danger'>Submit</Button>
           </form>
 
 
           <ul className='text-center'>
-            {this.state.people.map((item,idx) => <li key={idx}>{item.name} {item.email}</li>)}
+            {this.state.people.map((item,idx) => <li key={idx}>{item.name} {item.email} {item.umur}</li>)}
           </ul>
 
         </Col>
+
+
+          <p onClick={this.getElement} name='tes name' value='tes value' data-name='data name'>testing element</p>
       </Container>
     )
   }
