@@ -89,7 +89,9 @@ export default class MyForm extends Component {
                 <h3 className='text-center'>List</h3>
                 <ListGroup>
                   {this.state.data.map((item,idx) => (
-                      <ListGroup.Item key={idx}>Nama: {item.name} <br /> Alamat: {item.address}</ListGroup.Item>
+                      <ListGroup.Item key={idx}>
+                        <span>Nama: {item.name} <br /> Alamat: {item.address}</span> 
+                      </ListGroup.Item>
                     )
                   )}
                 </ListGroup>
