@@ -6,7 +6,8 @@ const BTC = 'Bitcoin';
 export default class ReactElement extends Component {
 
   state = {
-    paymentMethod: BTC
+    paymentMethod: BTC,
+    arrCoba:[1,2,3]
   }
 
   selected = (choice) => {
@@ -18,6 +19,17 @@ export default class ReactElement extends Component {
   }
 
   render() {
+    
+   const num = this.state.arrCoba
+   num.push(4)
+   console.log(num)
+   console.log(this.state.arrCoba)
+
+  // console.log(this.state.arrCoba)
+  // const num = this.state.arrCoba.concat(4)
+  // console.log(num)
+  // console.log(this.state.arrCoba)
+
     // console.log(this.state.paymentMethod)
     // let a = 'tes'
     // const boldElement = <b>Text (as a string)</b>;

@@ -12,11 +12,12 @@ import {
 export default class MyForm extends Component {
 
   state = {
-    data: [],
+    people: [],
     fields: {
       name:'',
-      address:''
-    }
+      email:''
+    },
+    fieldError:{}
   }
 
   onChangeHandler = (event) => {
@@ -27,22 +28,44 @@ export default class MyForm extends Component {
     })
   }
 
+  validate = (person) => {
+    console.log(person)
+    const errors = {}
+    if(!person.name) {
+      errors.name = 'Name Required'
+    }
+    if(!person.email){
+      errors.email = 'Email Required'
+    }
+    // if(!person.email && !isEmail(person.email)){
+    //   errors.email = 'Invalid Email'
+    // }
+
+    return errors
+  }
+
   onFormSubmit = (event) => {
     event.preventDefault()
-
-    const data = [...this.state.data, this.state.fields]
-
+    const person = {...this.state.fields}
+    const fieldError = this.validate(person)
+    this.setState({ fieldError })
+    
+    if(Object.keys(fieldError).length) return
+    
+    const people = [...this.state.people]
     this.setState({
-      data,
-      fields:{
+      people: people.concat(person),
+      fields: {
         name:'',
-        address:''
+        email:''
       }
     })
+    
 
   }
 
   render() {
+    // console.log(this.state.fieldError.name)
     return (
       <Container>
         <Row>
@@ -66,17 +89,23 @@ export default class MyForm extends Component {
                       value={this.state.fields.name}
                       onChange={this.onChangeHandler}
                     />
+                    <Form.Text className="text-danger">
+                      {this.state.fieldError.name}
+                    </Form.Text>
                   </Form.Group>
 
                   <Form.Group controlId="formBasicPassword">
-                    <Form.Label>Address</Form.Label>
+                    <Form.Label>Email Address</Form.Label>
                     <Form.Control
-                      type="text"
-                      placeholder="Enter Address"
-                      value={this.state.fields.address}
-                      name='address'
+                      type="email"
+                      placeholder="Enter Email"
+                      value={this.state.fields.email}
+                      name='email'
                       onChange={this.onChangeHandler}
                     />
+                    <Form.Text className="text-danger">
+                      {this.state.fieldError.email}
+                    </Form.Text>
                   </Form.Group>
 
                   <Button variant="primary" type="submit">
@@ -88,9 +117,9 @@ export default class MyForm extends Component {
               <Col xs={12}>
                 <h3 className='text-center'>List</h3>
                 <ListGroup>
-                  {this.state.data.map((item,idx) => (
+                  {this.state.people.map((item,idx) => (
                       <ListGroup.Item key={idx}>
-                        <span>Nama: {item.name} <br /> Alamat: {item.address}</span> 
+                        <span>Nama: {item.name} <br /> Alamat: {item.email}</span> 
                       </ListGroup.Item>
                     )
                   )}
