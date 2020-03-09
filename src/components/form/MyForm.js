@@ -17,7 +17,7 @@ export default class MyForm extends Component {
       name:'',
       email:''
     },
-    fieldError:{}
+    fieldError :{}
   }
 
   onChangeHandler = (event) => {
@@ -29,38 +29,31 @@ export default class MyForm extends Component {
   }
 
   validate = (person) => {
-    console.log(person)
     const errors = {}
-    if(!person.name) {
-      errors.name = 'Name Required'
-    }
-    if(!person.email){
-      errors.email = 'Email Required'
-    }
-    // if(!person.email && !isEmail(person.email)){
-    //   errors.email = 'Invalid Email'
-    // }
+    if(!person.name) errors.nameee = 'Name is required'
+    if(!person.email) errors.emailll = 'Email is required'
 
     return errors
   }
 
   onFormSubmit = (event) => {
     event.preventDefault()
+    
     const person = {...this.state.fields}
     const fieldError = this.validate(person)
-    this.setState({ fieldError })
-    
+    this.setState ({ fieldError })
+
     if(Object.keys(fieldError).length) return
-    
+
     const people = [...this.state.people]
+
     this.setState({
-      people: people.concat(person),
+      people:people.concat(person),
       fields: {
         name:'',
         email:''
       }
     })
-    
 
   }
 
@@ -90,7 +83,7 @@ export default class MyForm extends Component {
                       onChange={this.onChangeHandler}
                     />
                     <Form.Text className="text-danger">
-                      {this.state.fieldError.name}
+                      {this.state.fieldError.nameee}
                     </Form.Text>
                   </Form.Group>
 
@@ -104,7 +97,7 @@ export default class MyForm extends Component {
                       onChange={this.onChangeHandler}
                     />
                     <Form.Text className="text-danger">
-                      {this.state.fieldError.email}
+                      {this.state.fieldError.emailll}
                     </Form.Text>
                   </Form.Group>
 
