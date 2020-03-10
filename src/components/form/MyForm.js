@@ -58,7 +58,7 @@ export default class MyForm extends Component {
   }
 
   render() {
-    console.log(this.state.fieldError)
+    // console.log(this.state.fieldError)
     return (
       <Container>
         <Row>
