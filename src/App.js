@@ -8,6 +8,7 @@ import TimerDashboard from '../src/components/timerNew/TimerDashboard'
 import Article from '../src/components/props_children/Article'
 import FirstForm from '../src/components/form/FirstForm'
 import MyForm from '../src/components/form/MyForm'
+import MyRouter from './components/router/MyRouter'
 // import 'antd/dist/antd.css';
 import { BrowserRouter as Router,Route } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -27,6 +28,7 @@ class App extends Component {
         <Route path='/barang' component={ListBarang} />
         <Route path='/timer' component={TimersDashboard} />
         <Route path='/timernew' component={TimerDashboard} />
+        <Route path='/router' component={MyRouter} />
       </Router>
     )
   }
