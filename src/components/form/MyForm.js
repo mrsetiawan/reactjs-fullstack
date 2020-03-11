@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import Fields from './Fields';
+
 import {
   Container,
   Col,
@@ -14,10 +16,10 @@ export default class MyForm extends Component {
   state = {
     people: [],
     fields: {
-      name:'',
-      email:''
+      name: '',
+      email: ''
     },
-    fieldError :{}
+    fieldError: {}
   }
 
   onChangeHandler = (event) => {
@@ -30,28 +32,28 @@ export default class MyForm extends Component {
 
   validate = (person) => {
     const errors = {}
-    if(!person.name) errors.nameee = 'Name is required'
-    if(!person.email) errors.emailll = 'Email is required'
+    if (!person.name) errors.nameee = 'Name is required'
+    if (!person.email) errors.emailll = 'Email is required'
 
     return errors
   }
 
   onFormSubmit = (event) => {
     event.preventDefault()
-    
-    const person = {...this.state.fields}
-    const fieldError = this.validate(person)
-    this.setState ({ fieldError })
 
-    if(Object.keys(fieldError).length) return
+    const person = { ...this.state.fields }
+    const fieldError = this.validate(person)
+    this.setState({ fieldError })
+
+    if (Object.keys(fieldError).length) return
 
     const people = [...this.state.people]
 
     this.setState({
-      people:people.concat(person),
+      people: people.concat(person),
       fields: {
-        name:'',
-        email:''
+        name: '',
+        email: ''
       }
     })
 
@@ -106,15 +108,15 @@ export default class MyForm extends Component {
                   </Button>
                 </Form>
               </Col>
-              
+
               <Col xs={12}>
                 <h3 className='text-center'>List</h3>
                 <ListGroup>
-                  {this.state.people.map((item,idx) => (
-                      <ListGroup.Item key={idx}>
-                        <span>Nama: {item.name} <br /> Alamat: {item.email}</span> 
-                      </ListGroup.Item>
-                    )
+                  {this.state.people.map((item, idx) => (
+                    <ListGroup.Item key={idx}>
+                      <span>Nama: {item.name} <br /> Alamat: {item.email}</span>
+                    </ListGroup.Item>
+                  )
                   )}
                 </ListGroup>
               </Col>
